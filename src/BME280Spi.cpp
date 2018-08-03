@@ -31,7 +31,7 @@ courtesy of Brian McNoldy at http://andrew.rsmas.miami.edu.
 #include "Arduino.h"
 #include "BME280Spi.h"
 
-#include <SPI.h>
+#include <tinySPI.h>
 
 /****************************************************************/
 BME280Spi::BME280Spi
@@ -78,7 +78,8 @@ bool BME280Spi::ReadRegister
    uint8_t len
 )
 {
-   SPI.beginTransaction(SPISettings(500000,MSBFIRST,SPI_MODE0));
+   //SPI.beginTransaction(SPISettings(500000,MSBFIRST,SPI_MODE0));
+   SPI.setDataMode(SPI_MODE0);
 
    // bme280 uses the msb to select read and write
    // combine the addr with the read/write bit
@@ -99,7 +100,7 @@ bool BME280Spi::ReadRegister
    // de-select the device
    digitalWrite(m_settings.spiCsPin, HIGH);
 
-   SPI.endTransaction();
+   //SPI.endTransaction();
 
    return true;
 }
@@ -112,7 +113,8 @@ bool BME280Spi::WriteRegister
    uint8_t data
 )
 {
-   SPI.beginTransaction(SPISettings(500000,MSBFIRST,SPI_MODE0));
+   //SPI.beginTransaction(SPISettings(500000,MSBFIRST,SPI_MODE0));
+   SPI.setDataMode(SPI_MODE0);
 
    // bme280 uses the msb to select read and write
    // combine the addr with the read/write bit
@@ -128,7 +130,7 @@ bool BME280Spi::WriteRegister
    // de-select the device
    digitalWrite(m_settings.spiCsPin, HIGH);
 
-   SPI.endTransaction();
+   //SPI.endTransaction();
 
    return true;
 }

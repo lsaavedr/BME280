@@ -20,7 +20,7 @@ SCK (Serial Clock)  ->  A5 on Uno/Pro-Mini, 21 on Mega2560/Due, 3 Leonardo/Pro-M
  */
 
 #include <BME280I2C.h>
-#include <Wire.h>             // Needed for legacy versions of Arduino.
+#include <TinyWireM.h>             // Needed for legacy versions of Arduino.
 
 #define SERIAL_BAUD 115200
 
@@ -82,7 +82,7 @@ void setup()
 
   while(!Serial) {} // Wait
 
-  Wire.begin();
+  TinyWireM.begin();
   while(!bme.begin())
   {
     Serial.println("Could not find BME280I2C sensor!");

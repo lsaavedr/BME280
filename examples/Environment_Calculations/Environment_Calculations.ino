@@ -21,7 +21,7 @@ SCK (Serial Clock)  ->  A5 on Uno/Pro-Mini, 21 on Mega2560/Due, 3 Leonardo/Pro-M
 
 #include <EnvironmentCalculations.h>
 #include <BME280I2C.h>
-#include <Wire.h>
+#include <TinyWireM.h>
 
 #define SERIAL_BAUD 115200
 
@@ -51,7 +51,7 @@ void setup()
 
   while(!Serial) {} // Wait
 
-  Wire.begin();
+  TinyWireM.begin();
 
   while(!bme.begin())
   {
